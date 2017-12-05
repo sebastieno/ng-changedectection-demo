@@ -29,8 +29,7 @@
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
-      true,
-      140
+      false
     ],
     "member-access": false,
     "member-ordering": [
@@ -130,7 +129,10 @@
       "jaifaim",
       "kebab-case"
     ],
-    "angular-whitespace": [true, "check-interpolation"],
+    "angular-whitespace": [
+      true,
+      "check-interpolation"
+    ],
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
