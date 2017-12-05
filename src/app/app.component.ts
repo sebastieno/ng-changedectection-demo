@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Menu } from './models/menu.model';
 import { MenuService } from './menu.service';
 import { MenuItem } from './models/menu-item.model';
@@ -14,6 +14,7 @@ import { MenuItem } from './models/menu-item.model';
     <jaifaim-basket [basket]='basket'></jaifaim-basket>
     <jaifaim-menu [menu]='menu' (quantityChanged)='quantityChanged($event)'></jaifaim-menu>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: []
 })
 export class AppComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef, NgZone, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ElementRef, NgZone, OnChanges, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponent';
 import { MenuItem } from '../models/menu-item.model';
 
@@ -11,6 +11,7 @@ import { MenuItem } from '../models/menu-item.model';
       <li *ngFor='let item of basket'>{{ item.item.label }} {{ item.quantity }}</li>
     </ul>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [':host { display:block; }']
 })
 export class BasketComponent extends ChangeDetectionNotifierBaseComponent {

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output, ElementRef, NgZone, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ElementRef, NgZone, Input, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponent';
 
 @Component({
@@ -8,6 +8,7 @@ import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponen
    {{ value }}
    <button (click)='increment()'>+</button>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [':host { display:block; }']
 })
 export class QuantityPickerComponent extends ChangeDetectionNotifierBaseComponent {

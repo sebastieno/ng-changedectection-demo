@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, NgZone, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, NgZone, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { MenuItem } from '../models/menu-item.model';
 import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponent';
 
@@ -8,6 +8,7 @@ import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponen
     <h3>{{ item.label }} - {{ item.price | currency }}</h3>
     <jaifaim-quantity-picker (quantityChanged)='notifyQuantityChanged($event)'></jaifaim-quantity-picker>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [':host { display:block; }']
 })
 export class MenuItemComponent extends ChangeDetectionNotifierBaseComponent {

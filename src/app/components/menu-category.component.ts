@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ElementRef, NgZone } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ElementRef, NgZone, ChangeDetectionStrategy } from '@angular/core';
 import { MenuCategory } from '../models/menu-category.model';
 import { MenuItem } from '../models/menu-item.model';
 import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponent';
@@ -9,6 +9,7 @@ import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponen
     <h2>{{ category.label }}</h2>
     <jaifaim-menu-item *ngFor='let item of category.items' [item]='item' (quantityChanged)='notifyQuantityChanged($event)'></jaifaim-menu-item>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [':host { display:block; }']
 })
 export class MenuCategoryComponent extends ChangeDetectionNotifierBaseComponent {
