@@ -1,11 +1,15 @@
-import { Component, OnInit, Input, ElementRef, NgZone } from '@angular/core';
-import { Basket } from '../models/basket.model';
+import { Component, OnInit, Input, ElementRef, NgZone, OnChanges, SimpleChanges } from '@angular/core';
 import { ChangeDetectionNotifierBaseComponent } from './cd-notifier.basecomponent';
+import { MenuItem } from '../models/menu-item.model';
 
 @Component({
   selector: 'jaifaim-basket',
   template: `
-    {{ total }}
+    {{ total | currency }}
+    <br/>
+    <ul>
+      <li *ngFor='let item of basket'>{{ item.item.label }} {{ item.quantity }}</li>
+    </ul>
   `,
   styles: [':host { display:block; }']
 })
@@ -15,19 +19,18 @@ export class BasketComponent extends ChangeDetectionNotifierBaseComponent {
   }
 
   total = 0;
-
-  private _basket: Basket;
-  @Input() set basket(value: Basket) {
+  private _basket: { quantity: number, item: MenuItem }[];
+  @Input() set basket(value: { quantity: number, item: MenuItem }[]) {
     this._basket = value;
-    this.computeBasket();
   }
-  get basket(): Basket {
+  get basket(): { quantity: number, item: MenuItem }[] {
+    this.computeBasket();
     return this._basket;
   }
 
   private computeBasket() {
-    if (this.basket && this.basket.items) {
-      this.total = this.basket.items.map(i => i.item.price * i.quantity).reduce((a, b) => a + b, 0);
+    if (this._basket && this._basket) {
+      this.total = this._basket.map(i => i.item.price * i.quantity).reduce((a, b) => a + b, 0);
     } else {
       this.total = 0;
     }
